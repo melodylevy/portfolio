@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Melody Levy | @1929stockcrash</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Archivo+Black&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FFF8EC;
+    --ink: #141414;
+    --red: #E8401C;
+    --green: #1D9E75;
+    --blue: #2B5CE6;
+    --yellow: #FFC83D;
+    --pink: #F26BA0;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Archivo', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.6;
+  }
+
+  ::selection { background: var(--yellow); }
+
+  .ticker {
+    background: var(--ink);
+    color: var(--paper);
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    padding: 8px 0;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+  .ticker-inner {
+    display: inline-block;
+    animation: tick 30s linear infinite;
+  }
+  @keyframes tick {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .ticker span { margin: 0 24px; }
+  .up { color: #5DCAA5; }
+
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 28px; }
+
+  /* HERO */
+  header { padding: 88px 0 64px; position: relative; }
+  .handle {
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    display: inline-block;
+    border: 2px solid var(--ink);
+    padding: 4px 14px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+    background: var(--yellow);
+    box-shadow: 3px 3px 0 var(--ink);
+  }
+  h1 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(44px, 8vw, 88px);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+  h1 .hl-red { color: var(--red); }
+  h1 .hl-strike { position: relative; white-space: nowrap; }
+  h1 .hl-strike::after {
+    content: '';
+    position: absolute;
+    left: -2%; right: -2%;
+    top: 52%;
+    height: 7px;
+    background: var(--red);
+    transform: rotate(-1.5deg);
+  }
+  .lede {
+    font-size: 19px;
+    max-width: 620px;
+    color: #3a3a3a;
+    margin-bottom: 40px;
+  }
+  .lede strong { color: var(--ink); }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 14px;
+  }
+  .stat-card {
+    border: 2px solid var(--ink);
+    border-radius: 14px;
+    padding: 18px 20px;
+    background: #fff;
+    box-shadow: 4px 4px 0 var(--ink);
+    transition: transform .15s, box-shadow .15s;
+  }
+  .stat-card:hover { transform: translate(-2px,-2px); box-shadow: 6px 6px 0 var(--ink); }
+  .stat-card .num {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 34px;
+    line-height: 1.1;
+  }
+  .stat-card .lbl {
+    font-family: 'Space Mono', monospace;
+    font-size: 12px;
+    color: #555;
+    margin-top: 2px;
+  }
+  .stat-card:nth-child(1) .num { color: var(--red); }
+  .stat-card:nth-child(2) .num { color: var(--blue); }
+  .stat-card:nth-child(3) .num { color: var(--green); }
+  .stat-card:nth-child(4) .num { color: var(--pink); }
+
+  /* THESIS */
+  .thesis {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 72px 0;
+    margin: 48px 0 0;
+  }
+  .kicker {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .kicker::before {
+    content: '';
+    width: 28px; height: 3px;
+    background: currentColor;
+    display: inline-block;
+  }
+  .thesis .kicker { color: var(--yellow); }
+  .thesis p {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(24px, 4vw, 38px);
+    line-height: 1.25;
+    max-width: 880px;
+    text-transform: none;
+  }
+  .thesis p em {
+    font-style: normal;
+    color: var(--yellow);
+  }
+
+  /* WORK */
+  section.work { padding: 72px 0; }
+  section.work .kicker { color: var(--red); }
+  h2 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(30px, 5vw, 46px);
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    margin-bottom: 40px;
+  }
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 18px;
+  }
+  .work-card {
+    border: 2px solid var(--ink);
+    border-radius: 16px;
+    background: #fff;
+    overflow: hidden;
+    text-decoration: none;
+    color: var(--ink);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 5px 5px 0 var(--ink);
+    transition: transform .15s, box-shadow .15s;
+  }
+  .work-card:hover { transform: translate(-3px,-3px); box-shadow: 8px 8px 0 var(--ink); }
+  .work-views {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 44px;
+    padding: 26px 22px 0;
+    line-height: 1;
+  }
+  .work-views small {
+    display: block;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #777;
+    margin-top: 6px;
+  }
+  .work-body { padding: 16px 22px 22px; flex: 1; display: flex; flex-direction: column; }
+  .work-title { font-weight: 600; font-size: 17px; margin-bottom: 6px; }
+  .work-desc { font-size: 14px; color: #555; flex: 1; }
+  .work-tag {
+    margin-top: 14px;
+    align-self: flex-start;
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 100px;
+    border: 1.5px solid var(--ink);
+  }
+  .feat { grid-column: 1 / -1; }
+  .feat .work-views { font-size: 64px; color: var(--red); }
+  .t-red { background: #FDE4DE; }
+  .t-blue { background: #DFE8FD; }
+  .t-green { background: #DDF3EA; }
+  .t-yellow { background: #FFF1CC; }
+  .t-pink { background: #FCE3ED; }
+
+  /* IRL + COLLAB */
+  .split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    padding-bottom: 72px;
+  }
+  @media (max-width: 720px) { .split { grid-template-columns: 1fr; } }
+  .panel {
+    border: 2px solid var(--ink);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 5px 5px 0 var(--ink);
+  }
+  .panel.green { background: var(--green); color: #fff; }
+  .panel.blue { background: var(--blue); color: #fff; }
+  .panel h3 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 24px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+  .panel p { font-size: 15px; opacity: 0.95; margin-bottom: 16px; }
+  .panel ul { list-style: none; }
+  .panel li {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    padding: 9px 0;
+    border-top: 1px solid rgba(255,255,255,0.35);
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .panel li b { font-weight: 700; white-space: nowrap; }
+
+  /* WHY RAMP */
+  .why {
+    background: var(--yellow);
+    border-top: 2px solid var(--ink);
+    border-bottom: 2px solid var(--ink);
+    padding: 64px 0;
+  }
+  .why .kicker { color: var(--ink); }
+  .why p {
+    font-size: 19px;
+    max-width: 720px;
+  }
+  .why p + p { margin-top: 16px; }
+
+  /* FOOTER */
+  footer { padding: 64px 0 80px; text-align: left; }
+  footer h2 { margin-bottom: 20px; }
+  .contact-row { display: flex; flex-wrap: wrap; gap: 14px; }
+  .btn {
+    font-family: 'Space Mono', monospace;
+    font-size: 14px;
+    text-decoration: none;
+    color: var(--ink);
+    border: 2px solid var(--ink);
+    background: #fff;
+    border-radius: 100px;
+    padding: 10px 22px;
+    box-shadow: 3px 3px 0 var(--ink);
+    transition: transform .15s, box-shadow .15s;
+    display: inline-block;
+  }
+  .btn:hover { transform: translate(-2px,-2px); box-shadow: 5px 5px 0 var(--ink); }
+  .btn.primary { background: var(--red); color: #fff; }
+</style>
+</head>
+<body>
+
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-inner">
+    <span>VIEWS <b class="up">▲ 4.2M+</b></span>
+    <span>LIKES <b class="up">▲ 5.1M</b></span>
+    <span>FOLLOWERS <b class="up">▲ 110K</b></span>
+    <span>IG ENGAGEMENT <b class="up">▲ 32%</b></span>
+    <span>ATTENTION SPAN OF THE INTERNET <b style="color:#F09595">▼ 0.8s</b></span>
+    <span>VIEWS <b class="up">▲ 4.2M+</b></span>
+    <span>LIKES <b class="up">▲ 5.1M</b></span>
+    <span>FOLLOWERS <b class="up">▲ 110K</b></span>
+    <span>IG ENGAGEMENT <b class="up">▲ 32%</b></span>
+    <span>ATTENTION SPAN OF THE INTERNET <b style="color:#F09595">▼ 0.8s</b></span>
+  </div>
+</div>
+
+<header class="wrap">
+  <div class="handle">@1929stockcrash</div>
+  <h1>The only crash<br>I cause is your <span class="hl-red">For&nbsp;You page.</span></h1>
+  <p class="lede"><strong>I'm Melody Levy, better known as @1929stockcrash.</strong> I've spent four years building an audience from scratch by figuring out exactly what makes the internet stop scrolling: hyper-specific cultural niches, street-level IRL formats, and jokes that demand to be shared.</p>
+  <div class="stat-row">
+    <div class="stat-card"><div class="num">5.1M</div><div class="lbl">likes on TikTok</div></div>
+    <div class="stat-card"><div class="num">110K</div><div class="lbl">followers across platforms</div></div>
+    <div class="stat-card"><div class="num">1.3M</div><div class="lbl">views, single video</div></div>
+    <div class="stat-card"><div class="num">32%</div><div class="lbl">IG engagement rate</div></div>
+  </div>
+</header>
+
+<div class="thesis">
+  <div class="wrap">
+    <div class="kicker">How I'd cause virality</div>
+    <p>virality is finding the thing 50,000 people thought only they noticed, and <em>saying it first</em>.</p>
+  </div>
+</div>
+
+<section class="work wrap">
+  <div class="kicker">Track record</div>
+  <h2>Things I made go&nbsp;viral</h2>
+  <div class="work-grid">
+    <a class="work-card feat" href="https://vm.tiktok.com/ZTdPoPCqQ/">
+      <div class="work-views t-red" style="background:transparent">1.3M<small>views · 160.6K likes · 1.18M reached</small></div>
+      <div class="work-body">
+        <div class="work-title">Jewish celebrities</div>
+        <div class="work-desc">A hyper-niche cultural deep dive that escaped containment. People debated it in the comments, which drove a 58% full-video completion rate and 17.4s average watch time. The algorithm rewards a fight worth finishing.</div>
+        <div class="work-tag t-red">CULTURAL NICHE</div>
+      </div>
+    </a>
+    <a class="work-card" href="https://vm.tiktok.com/ZTd51RncL/">
+      <div class="work-views">495K<small>views</small></div>
+      <div class="work-body">
+        <div class="work-title">Things that aren't Jewish but feel Jewish</div>
+        <div class="work-desc">The sequel. I read every comment on the first video and built this out of what people were already saying. Half of going viral is just listening better than everyone else.</div>
+        <div class="work-tag t-yellow">FORMAT SEQUEL</div>
+      </div>
+    </a>
+    <a class="work-card" href="https://www.tiktok.com/@1929stockcrash/video/7042381067059383599">
+      <div class="work-views">386K<small>views · 56.1K likes</small></div>
+      <div class="work-body">
+        <div class="work-title">ItalianX Pride</div>
+        <div class="work-desc">In-group humor people claimed as their own. The comments were mostly tagged names, which is the entire point. Strangers spent 1,118 collective hours watching this.</div>
+        <div class="work-tag t-green">IDENTITY HUMOR</div>
+      </div>
+    </a>
+    <a class="work-card" href="https://www.instagram.com/reel/DUgq2MdEljP/">
+      <div class="work-views">380K+<small>views, series</small></div>
+      <div class="work-body">
+        <div class="work-title">Billionaire March interview</div>
+        <div class="work-desc">IRL production with zero dollars: stopping strangers, directing on the fly, and writing the exact questions that make a clip travel.</div>
+        <div class="work-tag t-blue">IRL PRODUCTION</div>
+      </div>
+    </a>
+    <a class="work-card" href="https://www.tiktok.com/@1929stockcrash/video/6924766894520110341">
+      <div class="work-views">103K<small>views</small></div>
+      <div class="work-body">
+        <div class="work-title">Abby Shapiro</div>
+        <div class="work-desc">Posted in the precise 48-hour window when the internet cared. Taste is mostly timing, and I have never missed a window.</div>
+        <div class="work-tag t-pink">TIMING PLAY</div>
+      </div>
+    </a>
+    <a class="work-card" href="https://www.tiktok.com/@1929stockcrash/video/7023513990680694021">
+      <div class="work-views">68K<small>views</small></div>
+      <div class="work-body">
+        <div class="work-title">Indie songs from 72 AD</div>
+        <div class="work-desc">An absurd idea I committed to with total sincerity. The weird swings are how you build fans instead of just numbers.</div>
+        <div class="work-tag t-yellow">ABSURDIST SWING</div>
+      </div>
+    </a>
+    <a class="work-card" href="https://www.instagram.com/reel/DTg_UB9kYoD/">
+      <div class="work-views">15.6K<small>views · dolores park</small></div>
+      <div class="work-body">
+        <div class="work-title">Street interviews: financial literacy</div>
+        <div class="work-desc">Asking strangers in Dolores Park about money. I was already making finance content in the wild.</div>
+        <div class="work-tag t-green">FINANCE × IRL</div>
+      </div>
+    </a>
+    <a class="work-card" href="https://www.instagram.com/reel/DZAwVqkR0N7/">
+      <div class="work-views" style="color:var(--green)">1.2K<small>shares · 67.5K views · 72 follows</small></div>
+      <div class="work-body">
+        <div class="work-title">SF vintage shopping vlog</div>
+        <div class="work-desc">My most recent post. 1,200 people sent it to a friend, which is the only metric I actually chase. A share is the internet's highest compliment.</div>
+        <div class="work-tag t-pink">MOST RECENT</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<div class="wrap split">
+  <div class="panel green">
+    <h3>Creator collabs</h3>
+    <p>I source talent, pitch the bit, and direct collabs that perform for both audiences. It is the same outreach and delivery muscle this role runs at scale.</p>
+    <ul>
+      <li><a href="https://www.tiktok.com/@1929stockcrash/video/6791288120626154758" style="color:inherit">Eman Makeup ↗</a> <b>325K views</b></li>
+      <li>Street interview series w/ strangers <b>ongoing</b></li>
+    </ul>
+  </div>
+  <div class="panel blue">
+    <h3>The instinct part</h3>
+    <p>What four years of posting taught me to spot before the data comes in:</p>
+    <ul>
+      <li>Hooks that survive 0.8 seconds</li>
+      <li>Niches with loud, taggy in-groups</li>
+      <li>Comments → next concept pipeline</li>
+      <li>Formats that escalate, not repeat</li>
+    </ul>
+  </div>
+</div>
+
+<div class="why">
+  <div class="wrap">
+    <div class="kicker">Why Ramp</div>
+    <p>My handle is <strong>@1929stockcrash</strong>. I have been doing finance-adjacent comedy since before it was a B2B marketing strategy. The glass box, the penny funeral: that's the exact kind of internet I make, except I've been doing it with a phone and zero dollars.</p>
+    <p><strong>Imagine what I'd do with a budget.</strong></p>
+  </div>
+</div>
+
+<footer class="wrap">
+  <h2>Let's make something<br>they screenshot.</h2>
+  <div class="contact-row">
+    <a class="btn primary" href="mailto:1929stockcrash@gmail.com">Email me</a>
+    <a class="btn" href="https://www.tiktok.com/@1929stockcrash">TikTok ↗</a>
+    <a class="btn" href="https://www.instagram.com/1929stockcrash/">Instagram ↗</a>
+    <a class="btn" href="https://twitter.com/1929stockcrash">Twitter ↗</a>
+  </div>
+</footer>
+
+</body>
+</html>
